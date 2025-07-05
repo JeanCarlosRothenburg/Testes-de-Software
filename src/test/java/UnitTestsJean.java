@@ -3,7 +3,7 @@ import Model.Bo.ModelBoCarrinho;
 import Model.Bo.ModelBoDesconto;
 import Model.Bo.ModelBoPerfil;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Unit Tests

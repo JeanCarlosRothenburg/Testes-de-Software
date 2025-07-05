@@ -1,4 +1,4 @@
- guilherme
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,12 +47,6 @@ public class CompraDAO {
         }
     }
 
-}
-
-import java.sql.*;
-
-public class CompraDAO {
-
     public String comprarNovamente(int idCompra) {
         String sql = "INSERT INTO compras (email, produto, status) " +
                 "SELECT email, produto, 'refeita' FROM compras WHERE id = ?";
@@ -72,21 +66,22 @@ public class CompraDAO {
         }
     }
 
-        public int criarCompraDeTeste (String email, String produto){
-            String sql = "INSERT INTO compras (email, produto, status) VALUES (?, ?, 'entregue') RETURNING id";
-            try (Connection conn = PostgresConnection.conectar();
-                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+    public int criarCompraDeTeste(String email, String produto) {
+        String sql = "INSERT INTO compras (email, produto, status) VALUES (?, ?, 'entregue') RETURNING id";
+        try (Connection conn = PostgresConnection.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-                stmt.setString(1, email);
-                stmt.setString(2, produto);
-                ResultSet rs = stmt.executeQuery();
-                if (rs.next()) {
-                    return rs.getInt("id"); // retorna o ID gerado
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            stmt.setString(1, email);
+            stmt.setString(2, produto);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id"); // retorna o ID gerado
             }
-            return -1; // erro
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return -1; // erro
+    }
+}
 
-     main
+

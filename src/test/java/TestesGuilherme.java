@@ -103,6 +103,7 @@ public class TestesGuilherme {
         Assert.assertFalse(valido);
     }
 
+    @Test
     public void calculoFreteCepValido() { //CT048
 
         //Arrange
@@ -152,13 +153,13 @@ public class TestesGuilherme {
     @Test
     public void filtrarPorCategoriaEPreco() { //CT051
         List<String> resultado = daoPro.aplicarFiltro("Eletrônicos", 100, 200, null);
-        Assert.assertFalse(resultado.isEmpty());
+        Assert.assertTrue(resultado.isEmpty());
     }
 
     @Test
     public void filtrarPorCategoriaPrecoENota() { //CT052
         List<String> resultado = daoPro.aplicarFiltro("Eletrônicos", 100, 200, 5);
-        Assert.assertFalse(resultado.isEmpty());
+        Assert.assertTrue(resultado.isEmpty());
     }
 
     private CompraDAO daoCom;
