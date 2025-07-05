@@ -12,6 +12,14 @@ target/
 *.iml
 *.ipr
 
+# Ignorar arquivos específicos do IntelliJ IDEA
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/workspace.xml
+
 ### Eclipse ###
 .apt_generated
 .classpath
