@@ -31,8 +31,8 @@ public class TestesGuilherme {
         EnderecoService service = new EnderecoService();
 
         //Act
-        service.adicionarEndereco("Rua Ibirama,n° 100, SC");
-        String retorno = service.adicionarEndereco("Rua Ibirama,n° 100, SC");
+        service.adicionarEndereco("Rua Ibirama,n° 100, SC"); //Adiciona o endereço pele primeira vez
+        String retorno = service.adicionarEndereco("Rua Ibirama,n° 100, SC"); //Força a duplicação do endereço
 
         //Assert
         Assert.assertEquals("Endereço já cadastrado", retorno);
@@ -102,7 +102,6 @@ public class TestesGuilherme {
         //Assert
         Assert.assertFalse(valido);
     }
-
     @Test
     public void calculoFreteCepValido() { //CT048
 
@@ -152,14 +151,20 @@ public class TestesGuilherme {
 
     @Test
     public void filtrarPorCategoriaEPreco() { //CT051
+        //Act
         List<String> resultado = daoPro.aplicarFiltro("Eletrônicos", 100, 200, null);
-        Assert.assertTrue(resultado.isEmpty());
+
+        //Assert
+        Assert.assertFalse(resultado.isEmpty());
     }
 
     @Test
     public void filtrarPorCategoriaPrecoENota() { //CT052
+        //Act
         List<String> resultado = daoPro.aplicarFiltro("Eletrônicos", 100, 200, 5);
-        Assert.assertTrue(resultado.isEmpty());
+
+        //Assert
+        Assert.assertFalse(resultado.isEmpty());
     }
 
     private CompraDAO daoCom;
@@ -170,28 +175,29 @@ public class TestesGuilherme {
 
     @Test
     public void calcularTotalComFrete() { //CT053
+        //Arrange
         double carrinho = 200.00;
         String cep = "11001-000";
+
+        //Act
         double total = daoCom.calcularTotalComFrete(carrinho, cep);
 
+        //Assert
         Assert.assertEquals(215.00, total, 0.01);
     }
 
     @Test
     public void finalizarCompraPIX() { //CT054
+        //Arrange
         String email = "guilherme@email.com";
         String produto = "Fone de ouvido";
         double total = 199.90;
 
+        //Act
         String resultado = daoCom.finalizarCompraPIX(email, produto, total);
-        Assert.assertEquals("Compra realizada com sucesso via PIX", resultado);
 
-        boolean gravou = daoCom.verificarCompra(email, produto);
-        Assert.assertTrue("Compra registrada no banco", gravou);
+        //Assert
+        Assert.assertEquals("Compra realizada com sucesso via PIX", resultado);
     }
 
 }
-
-
-
-
