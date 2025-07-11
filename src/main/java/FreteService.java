@@ -1,10 +1,12 @@
 public class FreteService {
     public String calcularFrete(String cep) {
-        if ("11001-000".equals(cep)) {
-            return "Frete: R$15,00";
-        } else {
+        if (cep == null || !cep.matches("\\d{5}-\\d{3}")) { //Valida se o CEP é correto
             return "Nenhuma opção de envio encontrada";
         }
+        else{
+            return "Frete: R$15,00";
+        }
+
+
     }
 }
-

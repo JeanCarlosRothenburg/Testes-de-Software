@@ -137,14 +137,10 @@ public class TestesLucas {
 
     private UsuarioDAO daoUser;
 
-    @Before
-    public void setUpUsuario() {
-        daoUser = new UsuarioDAO();
-    }
-
     @Test
     public void criarContaComEmailNovo() { //CT011
         //Arrange
+        daoUser = new UsuarioDAO();
         String email = "lucas@gmail.com";
         daoUser.excluirContaPorEmail(email);
 
@@ -158,6 +154,7 @@ public class TestesLucas {
     @Test
     public void criarContaComEmailExistente() { //CT012
         //Arrange
+        daoUser = new UsuarioDAO();
         String email = "lucas@gmail.com";
         daoUser.criarConta(email, "Lucas Ratzmann", "Lucas123");
 
@@ -170,10 +167,12 @@ public class TestesLucas {
 
     @Test
     public void loginComContaValida() { //CT013
+
         //Arrange
+        daoUser = new UsuarioDAO();
         String email = "lucas@gmail.com";
         String senha = "Lucas123";
-        daoUser.criarConta(email, "Lucas Ratzmann", senha); // garante que existe
+        daoUser.criarConta(email, "Lucas Ratzmann", senha);
 
         //Act
         boolean resultado = daoUser.fazerLogin(email, senha);
@@ -184,14 +183,10 @@ public class TestesLucas {
 
     private CompraDAO daoCompra;
 
-    @Before
-    public void setUpCompra() {
-        daoCompra = new CompraDAO();
-    }
-
     @Test
-    public void ct014_refazerCompraRapida() { //CT014
+    public void refazerCompraRapida() { //CT014
         //Arrange
+        daoCompra = new CompraDAO();
         int idCompra = daoCompra.criarCompraDeTeste("lucas@gmail.com", "Echo Pop");
         Assert.assertTrue("ID de compra de teste deve ser válido", idCompra > 0);
 
